@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,13 +21,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-x-#a4*!vxeml7q+g8a-l@!&(c676p#7n8nxmj!57u2(68hfr_6'
+# Gere uma nova chave secreta para produção e a substitua abaixo.
+# Você pode gerá-la com o comando:
+# python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
+SECRET_KEY = 'sua-nova-secret-key-aqui'  # ⚠️ Substitua por uma chave real
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+# Inclua os domínios que irão acessar a aplicação.
+# Para PythonAnywhere: 'seu-usuario.pythonanywhere.com'
+# Para Render: 'nome-do-servico.onrender.com'
+# Você também pode usar '*' para testes iniciais (não recomendado em produção)
+ALLOWED_HOSTS = [
+    'seu-usuario.pythonanywhere.com',
+    '127.0.0.1',
+    'localhost',
+]
 
 # Application definition
 
@@ -116,6 +127,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Diretório onde os arquivos estáticos serão coletados para produção
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
